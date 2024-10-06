@@ -112,14 +112,8 @@
   letter-spacing: 60px;
 }
 
-/* есть ли другое решение без использования псевдоэлементов и создания нового класса? */
-
-.aligned-text_right > span:first-child {
-  letter-spacing: 30px;
-}
-
 .no-letter-spacing {
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
 
 .cover__description {
@@ -127,7 +121,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  bottom: 0;
   z-index: 2;
   padding: 125px 28px 0px 28px;
 }
@@ -211,11 +204,6 @@
   width: 100%;
 }
 
-/* раннее я использовала span в lots__look-more-link и card__title
-для подчеркивания текста, исключая области с padding.
-
-К сожалению, у text-decoration нет возможности настроить толщину линии */
-
 .card__title {
   font-size: 22px;
   text-transform: uppercase;
@@ -226,10 +214,6 @@
   text-decoration-color: #fff;
   text-underline-offset: 3px;
 }
-
-/* .card__title span {
-  border-bottom: 1px solid white;
-} */
 
 .card__text {
   padding: 0 39px 48px 39px;
@@ -247,10 +231,6 @@
   text-decoration-color: #000;
   text-underline-offset: 4px;
 }
-
-/* .lots__look-more-link span {
-  border-bottom: 1px solid #000;
-} */
 
 .about {
   margin: 30px 24px;
