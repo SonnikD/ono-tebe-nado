@@ -1,11 +1,11 @@
 .header {
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
-  height: 105px;
+  height: auto;
   align-items: center;
   font-size: 18px;
   font-weight: 400;
-  margin: 94px 0;
+  margin: 92px 0;
 }
 
 .header__menu {
@@ -27,13 +27,13 @@
   list-style: none;
 }
 
-.header__link_active {
-  border: none;
+.header__link {
+  border-bottom: 1px solid #000;
+  letter-spacing: 0.18px;
 }
 
-.header__link {
-  border-bottom: 1px solid black;
-  letter-spacing: 0.18px;
+.header__link_active {
+  border: none;
 }
 
 .header__logo {
@@ -53,46 +53,44 @@
 }
 
 .address a {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
 }
 
 .cover {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 757px;
-}
-
-.cover__image {
+  min-height: 757px;
+  position: relative;
   background-image: url(../images/cover.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  height: 100%;
+  padding-top: 110px;
 }
 
 .overlay {
+  position: absolute;
   top: 0;
   left: 0;
-  position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
 .cover__title {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  top: 164px;
-  width: 100%;
-  z-index: 2;
   text-transform: uppercase;
   font-size: 100px;
   color: #fff;
   line-height: 123%;
   font-weight: 700;
   padding: 0 50px;
+  z-index: 2;
+  width: 100%;
 }
 
 .aligned-text {
@@ -107,12 +105,16 @@
 
 .aligned-text_right {
   align-self: flex-end;
+  letter-spacing: 30px;
 }
+
 .letter-spacing-extended {
   letter-spacing: 60px;
 }
 
-.letter-spacing-extended-two {
+/* есть ли другое решение без использования псевдоэлементов и создания нового класса? */
+
+.aligned-text_right > span:first-child {
   letter-spacing: 30px;
 }
 
@@ -126,13 +128,12 @@
   justify-content: space-around;
   align-items: center;
   bottom: 0;
-  position: absolute;
   z-index: 2;
-  padding: 50px 28px;
+  padding: 125px 28px 0px 28px;
 }
 
 .cover__description-text {
-  padding-left: 29px;
+  padding-left: 27px;
   color: #fff;
   text-transform: uppercase;
   font-size: 22px;
@@ -142,13 +143,14 @@
 
 .bet-button {
   cursor: pointer;
-  border: 1px solid #fff;
-  padding: 12px 32px;
+  border: 1px solid currentColor;
+  padding: 12px 31px;
   background-color: transparent;
   color: #fff;
   font-size: 22px;
   font-weight: 500;
   text-transform: uppercase;
+  font-family: Raleway, sans-serif;
 }
 
 .lots {
@@ -182,39 +184,55 @@
   position: relative;
   display: flex;
   flex-flow: column wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 334px;
-  height: 563px;
+  min-height: 563px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
-.card_type_film,
-.card_type_book,
+.card_type_film {
+  background-image: url(../images/card-lot-01.jpg);
+}
+
+.card_type_book {
+  background-image: url(../images/card-lot-02.jpg);
+}
+
 .card_type_picture {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  background-image: url(../images/card-lot-03.jpg);
 }
 
 .card__title,
 .card__text {
-  position: absolute;
   z-index: 2;
-  color: white;
+  color: #fff;
   width: 100%;
 }
 
+/* раннее я использовала span в lots__look-more-link и card__title
+для подчеркивания текста, исключая области с padding.
+
+К сожалению, у text-decoration нет возможности настроить толщину линии */
+
 .card__title {
-  top: 20px;
   font-size: 22px;
   text-transform: uppercase;
   font-weight: 700;
-  padding: 30px 40px;
+  padding: 49px 40px 0 40px;
+  align-self: flex-start;
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  text-underline-offset: 3px;
 }
-.card__title span {
+
+/* .card__title span {
   border-bottom: 1px solid white;
-}
+} */
+
 .card__text {
-  padding: 48px 39px;
+  padding: 0 39px 48px 39px;
   margin: 0 3px;
   font-size: 20px;
   font-weight: 400;
@@ -225,11 +243,14 @@
   font-size: 20px;
   text-transform: lowercase;
   margin: 0 63px;
+  text-decoration: underline;
+  text-decoration-color: #000;
+  text-underline-offset: 4px;
 }
 
-.lots__look-more-link span {
+/* .lots__look-more-link span {
   border-bottom: 1px solid #000;
-}
+} */
 
 .about {
   margin: 30px 24px;
@@ -238,8 +259,8 @@
 .about__column {
   display: grid;
   grid-template-columns: 334px auto;
-  grid-template-rows: 240px 312px;
 }
+
 .about__logo {
   justify-self: center;
   align-self: center;
@@ -253,9 +274,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .about__circle {
   width: 240px;
-  height: 240px;
+  min-height: 240px;
   background-color: #000;
   border-radius: 50%;
 }
@@ -286,7 +308,7 @@
 }
 
 .footer {
-  margin: 190px 50px 88px;
+  margin: 157px 50px 88px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
